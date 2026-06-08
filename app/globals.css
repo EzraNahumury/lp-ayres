@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   AYRES — "Dark Cinematic Sport" theme
+   Deep black with red ambient glow, glassmorphic panels, glossy red-gradient
+   actions, and italic condensed athletic display type.
+   =========================================================================== */
+
+@theme {
+  /* --- Color palette (dark) -------------------------------------------- */
+  --color-background: #0a0a0b; /* near-black page */
+  --color-foreground: #f4f4f5; /* bone white text */
+
+  --color-card: #141417; /* base surface (glass adds translucency) */
+  --color-card-foreground: #f4f4f5;
+
+  --color-muted: #1c1c20; /* raised surface — tracks, tiles */
+  --color-muted-foreground: #9a9aa3; /* secondary gray text (AA on dark) */
+
+  --color-border: #2a2a30; /* subtle resting border */
+  --color-input: #141417;
+  --color-ring: #ff3b30; /* sport-red focus */
+
+  /* Sport red + its gradient stops */
+  --color-accent: #ff3b30; /* bright — glows, icons, text, borders */
+  --color-accent-foreground: #ffffff;
+  /* Gradient stops are deepened so white labels/icons on them clear WCAG AA. */
+  --color-accent-from: #db2817;
+  --color-accent-to: #b81410;
+  --color-accent-soft: #ff6a5f;
+
+  /* Tone aliases kept so existing tone-mapped components still resolve:
+     red is the lone accent; bone-white is the neutral pop. */
+  --color-secondary: #f4f4f5;
+  --color-secondary-foreground: #0a0a0b;
+  --color-tertiary: #ff3b30;
+  --color-tertiary-foreground: #ffffff;
+  --color-quaternary: #f4f4f5;
+  --color-quaternary-foreground: #0a0a0b;
+
+  /* --- Depth + glow shadows (with a faint top highlight) ---------------- */
+  --shadow-soft-sm:
+    inset 0 1px 0 0 color-mix(in srgb, #ffffff 5%, transparent),
+    0 12px 30px -14px rgba(0, 0, 0, 0.8);
+  --shadow-soft:
+    inset 0 1px 0 0 color-mix(in srgb, #ffffff 6%, transparent),
+    0 26px 60px -24px rgba(0, 0, 0, 0.85);
+  --shadow-glow:
+    inset 0 1px 0 0 color-mix(in srgb, #ffffff 7%, transparent),
+    0 0 40px -8px rgba(255, 59, 48, 0.5),
+    0 26px 60px -26px rgba(0, 0, 0, 0.85);
+  --shadow-glow-strong: 0 0 64px -6px rgba(255, 59, 48, 0.6);
+  --shadow-btn: 0 10px 30px -8px rgba(255, 59, 48, 0.55);
+  --shadow-btn-hover: 0 14px 40px -8px rgba(255, 59, 48, 0.7);
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-marquee-slow: marquee 64s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-drift: drift 20s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 5s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.4s var(--ease-out-soft);
+  --animate-glow-a: glow-a 24s ease-in-out infinite;
+  --animate-glow-b: glow-b 30s ease-in-out infinite;
+  --animate-glow-c: glow-c 27s ease-in-out infinite;
+}
+
+/* Fonts wired to next/font CSS variables. */
+@theme inline {
+  --font-heading: var(--font-heading-sport), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* --- Keyframes ---------------------------------------------------------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(22px, -30px);
+  }
+}
+@keyframes glow-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(7vw, 5vh) scale(1.15);
+  }
+  66% {
+    transform: translate(-4vw, 9vh) scale(0.92);
+  }
+}
+@keyframes glow-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-9vw, -6vh) scale(1.12);
+  }
+}
+@keyframes glow-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(11vw, -7vh) scale(1.08);
+  }
+}
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Base layer --------------------------------------------------------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Athletic display headings: condensed, italic, uppercase. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  /* High-contrast red keyboard focus that follows the element's radius. */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* --- Custom utilities --------------------------------------------------- */
+
+/* Frosted glass surface — translucent dark fill + hairline light border. */
+@utility glass {
+  background-color: color-mix(in srgb, var(--color-card) 62%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, #ffffff 8%, transparent);
+}
+@utility glass-strong {
+  background-color: color-mix(in srgb, var(--color-card) 84%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in srgb, #ffffff 9%, transparent);
+}
+/* Plain hairline border (no fill) for dividers/outline buttons. */
+@utility hairline {
+  border: 1px solid color-mix(in srgb, #ffffff 8%, transparent);
+}
+
+/* White → red gradient text for display words. */
+@utility text-gradient-red {
+  background-image: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    var(--color-accent-soft) 55%,
+    var(--color-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fade the left/right edges of a marquee. */
+@utility mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+
+/* --- Scroll-reveal (progressive enhancement) ---------------------------- */
+@layer utilities {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Respect reduced motion -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
