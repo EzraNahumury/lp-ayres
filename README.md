@@ -66,24 +66,24 @@ D:\lp-ayres
 
 ```mermaid
 flowchart TD
-  A[Browser request GET /] --> B[Next.js App Router]
-  B --> C[app/layout.tsx RootLayout]
-  C --> D[next/font loads Saira Condensed and Plus Jakarta Sans]
-  C --> E[app/globals.css loads Tailwind theme and custom utilities]
-  C --> F[metadata exported for title, description, OG, Twitter]
-  C --> G[inline script adds html.js before reveal styles apply]
-  C --> H[SiteBackground client component]
-  C --> I[children from app/page.tsx]
-  I --> J[SiteHeader]
-  I --> K[main#main]
-  K --> L[Hero]
-  K --> M[PartnerMarquee]
-  K --> N[Features and GuaranteeAccordion]
-  K --> O[HowItWorks]
-  K --> P[Catalog]
-  K --> Q[Testimonials]
-  K --> R[CTA]
-  I --> S[SiteFooter]
+  A["Browser request GET /"] --> B["Next.js App Router"]
+  B --> C["app/layout.tsx RootLayout"]
+  C --> D["next/font loads Saira Condensed and Plus Jakarta Sans"]
+  C --> E["app/globals.css loads Tailwind theme and custom utilities"]
+  C --> F["metadata exported for title, description, OG, Twitter"]
+  C --> G["inline script adds html.js before reveal styles apply"]
+  C --> H["SiteBackground client component"]
+  C --> I["children from app/page.tsx"]
+  I --> J["SiteHeader"]
+  I --> K["main#main"]
+  K --> L["Hero"]
+  K --> M["PartnerMarquee"]
+  K --> N["Features and GuaranteeAccordion"]
+  K --> O["HowItWorks"]
+  K --> P["Catalog"]
+  K --> Q["Testimonials"]
+  K --> R["CTA"]
+  I --> S["SiteFooter"]
 ```
 
 Penjelasan:
@@ -98,43 +98,43 @@ Penjelasan:
 
 ```mermaid
 flowchart TB
-  Page[app/page.tsx Home]
-  Page --> Header[SiteHeader]
-  Header --> Logo[Logo]
-  Header --> DesktopNav[Desktop anchor nav]
-  Header --> MobileNav[MobileNav client]
-  Header --> HeaderCTA[View Collection external link]
+  Page["app/page.tsx Home"]
+  Page --> Header["SiteHeader"]
+  Header --> Logo["Logo"]
+  Header --> DesktopNav["Desktop anchor nav"]
+  Header --> MobileNav["MobileNav client"]
+  Header --> HeaderCTA["View Collection external link"]
 
-  Page --> Main[main#main]
-  Main --> Hero[Hero]
-  Main --> Partner[PartnerMarquee]
-  Main --> Features[Features]
-  Features --> Guarantee[GuaranteeAccordion client]
-  Main --> Values[HowItWorks]
-  Main --> Catalog[Catalog client]
-  Catalog --> Carousel[Catalog carousel state]
-  Catalog --> Viewer[CatalogViewer modal]
-  Main --> Testimonials[Testimonials client]
-  Testimonials --> Video[YouTube nocookie embed after click]
-  Testimonials --> ReviewCarousel[Google review carousel state]
-  Main --> CTA[CTA]
-  Page --> Footer[SiteFooter]
+  Page --> Main["main#main"]
+  Main --> Hero["Hero"]
+  Main --> Partner["PartnerMarquee"]
+  Main --> Features["Features"]
+  Features --> Guarantee["GuaranteeAccordion client"]
+  Main --> Values["HowItWorks"]
+  Main --> Catalog["Catalog client"]
+  Catalog --> Carousel["Catalog carousel state"]
+  Catalog --> Viewer["CatalogViewer modal"]
+  Main --> Testimonials["Testimonials client"]
+  Testimonials --> Video["YouTube nocookie embed after click"]
+  Testimonials --> ReviewCarousel["Google review carousel state"]
+  Main --> CTA["CTA"]
+  Page --> Footer["SiteFooter"]
 ```
 
 ## Flow Konten dan Aset
 
 ```mermaid
 flowchart LR
-  Content[lib/content.ts] --> HeroCopy[hero copy and CTA]
-  Content --> NavCopy[nav and footer menu]
-  Content --> Partners[partner names and imported clean logos]
-  Content --> GuaranteeCopy[guarantee items]
-  Content --> ValuesCopy[value cards]
-  Content --> CatalogData[catalog metadata, cover, pages]
-  Content --> Reviews[reviews and video id]
-  Content --> FooterData[contact, socials, marketplace]
+  Content["lib/content.ts"] --> HeroCopy["hero copy and CTA"]
+  Content --> NavCopy["nav and footer menu"]
+  Content --> Partners["partner names and imported clean logos"]
+  Content --> GuaranteeCopy["guarantee items"]
+  Content --> ValuesCopy["value cards"]
+  Content --> CatalogData["catalog metadata, cover, pages"]
+  Content --> Reviews["reviews and video id"]
+  Content --> FooterData["contact, socials, marketplace"]
 
-  Public[public assets] --> Images[next/image consumers]
+  Public["public assets"] --> Images["next/image consumers"]
   Partners --> PartnerMarquee
   CatalogData --> Catalog
   HeroCopy --> Hero
@@ -154,21 +154,21 @@ Prinsip maintenance:
 
 ```mermaid
 flowchart TD
-  U[User membuka landing page] --> H[Hero]
-  H --> WA1[Order Now ke WhatsApp]
-  H --> Collection[View Collection ke ayreslab.id]
-  U --> Nav[Header/Footer anchor nav]
-  Nav --> Section[Scroll ke section terkait]
-  U --> CatalogSection[Catalog]
-  CatalogSection --> Choose[User pilih katalog atau thumbnail]
-  Choose --> Lightbox[CatalogViewer modal]
-  Lightbox --> PrevNext[Keyboard/click previous-next page]
-  Lightbox --> Close[Escape atau tombol close]
-  CatalogSection --> WA2[Order Now ke WhatsApp]
-  U --> Reviews[Testimonials]
-  Reviews --> Play[Play video]
-  Play --> Embed[YouTube nocookie iframe dimuat]
-  U --> Footer[Footer contact/social/marketplace]
+  U["User membuka landing page"] --> H["Hero"]
+  H --> WA1["Order Now ke WhatsApp"]
+  H --> Collection["View Collection ke ayreslab.id"]
+  U --> Nav["Header/Footer anchor nav"]
+  Nav --> Section["Scroll ke section terkait"]
+  U --> CatalogSection["Catalog"]
+  CatalogSection --> Choose["User pilih katalog atau thumbnail"]
+  Choose --> Lightbox["CatalogViewer modal"]
+  Lightbox --> PrevNext["Keyboard/click previous-next page"]
+  Lightbox --> Close["Escape atau tombol close"]
+  CatalogSection --> WA2["Order Now ke WhatsApp"]
+  U --> Reviews["Testimonials"]
+  Reviews --> Play["Play video"]
+  Play --> Embed["YouTube nocookie iframe dimuat"]
+  U --> Footer["Footer contact/social/marketplace"]
 ```
 
 CTA eksternal yang penting:
@@ -219,13 +219,13 @@ Client Component yang ada:
 
 ```mermaid
 flowchart TD
-  CSS[app/globals.css] --> Theme[@theme color, shadow, font, animation tokens]
-  CSS --> Base[@layer base html, body, headings, focus]
-  CSS --> Utilities[@utility glass, hairline, text-gradient-red, mask-fade-x]
-  CSS --> RevealCSS[.js .reveal hidden state and .is-visible]
-  CSS --> ReducedMotion[prefers-reduced-motion overrides]
-  Layout[app/layout.tsx] --> CSS
-  Components[Components] --> Tailwind[Utility classes and theme tokens]
+  CSS["app/globals.css"] --> Theme["@theme color, shadow, font, animation tokens"]
+  CSS --> Base["@layer base html, body, headings, focus"]
+  CSS --> Utilities["@utility glass, hairline, text-gradient-red, mask-fade-x"]
+  CSS --> RevealCSS[".js .reveal hidden state and .is-visible"]
+  CSS --> ReducedMotion["prefers-reduced-motion overrides"]
+  Layout["app/layout.tsx"] --> CSS
+  Components["Components"] --> Tailwind["Utility classes and theme tokens"]
 ```
 
 Catatan styling:
@@ -239,14 +239,14 @@ Catatan styling:
 
 ```mermaid
 flowchart LR
-  Dev[npm run dev] --> Local[Local development server]
-  Code[Code changes] --> Lint[npm run lint]
-  Lint --> Build[npm run build]
-  Build --> NextBuild[Next.js 16 Turbopack production build]
-  NextBuild --> Typecheck[TypeScript check]
-  Typecheck --> Prerender[Static page generation]
-  Prerender --> Start[npm run start for production server]
-  Prerender --> Deploy[Vercel or compatible Next hosting]
+  Dev["npm run dev"] --> Local["Local development server"]
+  Code["Code changes"] --> Lint["npm run lint"]
+  Lint --> Build["npm run build"]
+  Build --> NextBuild["Next.js 16 Turbopack production build"]
+  NextBuild --> Typecheck["TypeScript check"]
+  Typecheck --> Prerender["Static page generation"]
+  Prerender --> Start["npm run start for production server"]
+  Prerender --> Deploy["Vercel or compatible Next hosting"]
 ```
 
 Command utama:
@@ -390,4 +390,3 @@ Sesuai instruksi repo, audit ini merujuk dokumentasi lokal Next.js 16 dari:
 - Uji mobile menu, katalog lightbox, CTA WhatsApp, dan marketplace link.
 - Jalankan `npm run lint`.
 - Jalankan `npm run build`.
-
